@@ -1,23 +1,31 @@
 <?php
 
-/* @var $this yii\web\View */
+use yii\widgets\ActiveForm;
+use app\models\FillForm;
+use yii\helpers\Html;
 
-$this->title = 'My Yii Application';
+/* @var $this yii\web\View */
+/* @var $model FillForm */
+/* @var $form ActiveForm */
+
+$this->title = 'TestTask';
 ?>
 <div class="site-index">
 
     <div class="body-content">
 
         <h2>Заливка</h2>
-        <form>
-            <label for="id-tank" class="h5">Цистерна</label>
-            <input class="form-control" id="id-tank" type="text" placeholder="Номер цистерны" name="tank">
-            <label for="employee" class="h5">Сотрудник</label>
-            <input class="form-control" id="employee" type="text" placeholder="Имя сотрудника" name="employee" required>
-            <label for="employee" class="h5">Кличество литров</label>
-            <input class="form-control" id="liters" type="number" max="300" min="1" value="1" placeholder="Количество литров" name="liters">
-            <input class="btn btn-success" type="submit" name="success" value="Подтвердить">
-        </form>
+        <?php $form = ActiveForm::begin() ?>
+
+            <?= $form->field($model, 'id_tank')->textInput(['disabled' => true]) ?>
+            <?= $form->field($model, 'employee')->textInput(['placeholder' => 'Имя сотрудника']) ?>
+            <?= $form->field($model, 'liters')->input('number', ['max' => '300', 'min' => '1', 'value' => '1']) ?>
+
+            <div class="form-group">
+                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-info']) ?>
+            </div>
+
+        <?php ActiveForm::end() ?>
 
         <hr/>
 
