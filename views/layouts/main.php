@@ -28,7 +28,7 @@ AppAsset::register($this);
 
 <div class="wrap">
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand text-white-50" href="#">TestTask</a>
+        <span class="navbar-brand text-white-50">TestTask</span>
     </nav>
 
     <div class="content container">
