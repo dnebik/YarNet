@@ -13,10 +13,13 @@ class FillForm extends Model
     public function rules()
     {
         return [
+            //НАВСЯКИЙ ПРОВЕРЯЕМ ИНДЕФИКАТОР ЦИСТЕРНЫ
             ['id_tank', 'exist', 'targetClass' => Tank::class, 'targetAttribute' => ['id_tank' => 'id']],
+            //ВСЕ ПОЛЯ НЕ ПУСТЫЕ
             [['id_tank', 'employee', 'liters'], 'required'],
-            ['id_tank', 'integer', 'message' => 'Ни одна цистерна не подошла'],
-            ['employee', 'string', 'length' => [5, 255]],
+            //ОГРАНИЧЕНИЕ ДЛИННЫ ИМЕНИ
+            ['employee', 'string', 'length' => [1, 255]],
+            //ОГРАНИЧЕНИЕ ЧИСЛА ЛИТРОВ
             ['liters', 'integer', 'max' => 300, 'min' => 1]
         ];
     }
