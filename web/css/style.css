@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    height: 100%;
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: unset;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.footer{
+    flex: 0 0 auto;
+}
+
+.tank-item {
+    margin-bottom: 1rem;
+}
+.tank-items {
+    border: 3px solid cornflowerblue;
+    border-radius: 20px;
+    padding: 10px 20px 5px 20px;
+    margin-bottom: 2rem;
+}
+
+.form-control {
+    margin-bottom: 1rem;
+}
