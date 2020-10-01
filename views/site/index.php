@@ -13,8 +13,6 @@ use app\models\FillHistory;
 /* @var $fillHistory FillHistory; */
 
 $this->title = 'TestTask';
-
-error_log('History: ' . print_r($fillHistory, true));
 ?>
 <div class="site-index">
 
@@ -24,7 +22,7 @@ error_log('History: ' . print_r($fillHistory, true));
         <h2>Заливка</h2>
         <?php $form = ActiveForm::begin() ?>
 
-            <?= $form->field($model, 'id_tank')->textInput(['disabled' => true]) ?>
+            <?= $form->field($model, 'id_tank')->textInput(['readonly' => true]) ?>
             <?= $form->field($model, 'employee')->textInput(['placeholder' => 'Имя сотрудника']) ?>
             <?= $form->field($model, 'liters')->input('number', ['max' => '300', 'min' => '1']) ?>
 
@@ -37,7 +35,7 @@ error_log('History: ' . print_r($fillHistory, true));
 
         <hr/>
 
-<!--    [ОТОБРАЖАЕМ СТАТУС ЦИСТЕРН]    -->
+<!--    [СТАТУС ЦИСТЕРН]    -->
         <h2>Цистерны</h2>
         <div class="tank-items">
             <? foreach ($tanks as $tank) { ?>
@@ -56,13 +54,12 @@ error_log('History: ' . print_r($fillHistory, true));
                 </div>
             <? } ?>
         </div>
-<!--    [ОТОБРАЖАЕМ СТАТУС ЦИСТЕРН]    -->
-
+<!--    [СТАТУС ЦИСТЕРН]    -->
 
         <hr/>
 
+<!--    [ИСТОРИЯ ОПЕРАЦИЙ]    -->
         <h2>История операций</h2>
-
         <table class="table">
             <thead class="thead-dark">
             <tr>
@@ -74,31 +71,18 @@ error_log('History: ' . print_r($fillHistory, true));
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-            </tr>
+            <? $i = 1; ?>
+            <? foreach ($fillHistory as $item) { ?>
+                <tr>
+                    <th scope="row"><?=$i++?></th>
+                    <td><?=$item->employee?></td>
+                    <td><?=$item->tank?></td>
+                    <td><?=$item->liters?></td>
+                    <td><?=$item->date?></td>
+                </tr>
+            <? } ?>
             </tbody>
         </table>
-
+<!--    [ИСТОРИЯ ОПЕРАЦИЙ]    -->
     </div>
-
-
 </div>

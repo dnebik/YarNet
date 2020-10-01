@@ -21,9 +21,13 @@ $('#fillform-liters').on('change', function () {
             if ($min == -1)
             {
                 $min = $fullness;
+                if (($value + $fullness) <= $quantity)
+                {
+                    $id = $i + 1;
+                }
             }
             else
-            if ($fullness < $min && ($value + $fullness) < $quantity)
+            if ($fullness < $min && ($value + $fullness) <= $quantity)
             {
                 $min = $fullness;
                 $id = $i + 1;

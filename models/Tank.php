@@ -44,8 +44,20 @@ class Tank extends \yii\db\ActiveRecord
         ];
     }
 
+    public function addFullness(int $value)
+    {
+        $fullness = $this->fullness;
+        $this->fullness = $fullness + $value;
+        return $this->save();
+    }
+
     public static function getAll()
     {
         return self::find()->orderBy('id ASC')->all();
+    }
+
+    public static function getTankByIdentity(int $id)
+    {
+        return self::findOne(['id' => $id]);
     }
 }

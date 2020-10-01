@@ -8,7 +8,6 @@ use app\models\Tank;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\web\Response;
 use yii\filters\VerbFilter;
 
 class SiteController extends Controller
@@ -59,8 +58,25 @@ class SiteController extends Controller
     {
         $model = new FillForm();
 
-        $tanks = Tank::getAll();
+        if ($model->load(Yii::$app->request->post()))
+        {
+            if ($model->validate())
+            {
+                $history = new FillHistory();
+                $history->employee = $model->employee;
+                $history->tank = $model->id_tank;
+                $history->liters = $model->liters;
 
+                $tank = Tank::getTankByIdentity($model->id_tank);
+                $tank->addFullness($model->liters);
+
+                $history->save();
+
+                $model = new FillForm();
+            }
+        }
+
+        $tanks = Tank::getAll();
         $fillHistory = FillHistory::getAll();
 
         return $this->render('index', compact(['model', 'tanks', 'fillHistory']));
