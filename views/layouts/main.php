@@ -26,7 +26,24 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-    <?= $content ?>
+<div class="wrap">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand text-white-50" href="#">TestTask</a>
+    </nav>
+
+    <div class="jumbotron">
+        <h1>YarNet</h1>
+    </div>
+
+    <div class="content container">
+        <?= $content ?>
+    </div>
+
+    <footer class="footer text-center bg-dark text-white-50">
+        <span>Тестовое задание для YarNet</span>
+    </footer>
+</div>
+
 
 <?php $this->endBody() ?>
 </body>
