@@ -72,7 +72,7 @@ class SiteController extends Controller
 
                 $history->save();
 
-                $model = new FillForm();
+                return $this->redirect('');
             }
         }
 
