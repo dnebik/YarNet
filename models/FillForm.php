@@ -13,6 +13,7 @@ class FillForm extends Model
     public function rules()
     {
         return [
+            ['id_tank', 'exist', 'targetClass' => Tank::class, 'targetAttribute' => ['id_tank' => 'id']],
             [['id_tank', 'employee', 'liters'], 'required'],
             ['id_tank', 'integer', 'message' => 'Ни одна цистерна не подошла'],
             ['employee', 'string', 'length' => [5, 255]],

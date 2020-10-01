@@ -14,7 +14,7 @@ use app\models\FillHistory;
 
 $this->title = 'TestTask';
 
-error_log('Tanks: ' . print_r($fillHistory, true));
+error_log('History: ' . print_r($fillHistory, true));
 ?>
 <div class="site-index">
 
@@ -26,10 +26,10 @@ error_log('Tanks: ' . print_r($fillHistory, true));
 
             <?= $form->field($model, 'id_tank')->textInput(['disabled' => true]) ?>
             <?= $form->field($model, 'employee')->textInput(['placeholder' => 'Имя сотрудника']) ?>
-            <?= $form->field($model, 'liters')->input('number', ['max' => '300', 'min' => '1', 'value' => '1']) ?>
+            <?= $form->field($model, 'liters')->input('number', ['max' => '300', 'min' => '1']) ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-info']) ?>
+                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-info', 'id' => 'success', 'disabled' => true ]) ?>
             </div>
 
         <?php ActiveForm::end() ?>
@@ -42,7 +42,7 @@ error_log('Tanks: ' . print_r($fillHistory, true));
         <div class="tank-items">
             <? foreach ($tanks as $tank) { ?>
                 <div class="tank-item">
-                    <label class="h5" for="tank-<?=$tank->id?>">Танк: <?=$tank->id?></label>
+                    <label class="h5" for="tank-<?=$tank->id?>">Цистерна: <?=$tank->id?></label>
                     <div id="tank-<?=$tank->id?>" class="progress">
                         <div
                                 class="progress-bar"
