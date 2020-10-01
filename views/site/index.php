@@ -3,17 +3,24 @@
 use yii\widgets\ActiveForm;
 use app\models\FillForm;
 use yii\helpers\Html;
+use app\models\Tank;
+use app\models\FillHistory;
 
 /* @var $this yii\web\View */
 /* @var $model FillForm */
 /* @var $form ActiveForm */
+/* @var $tanks Tank; */
+/* @var $fillHistory FillHistory; */
 
 $this->title = 'TestTask';
+
+error_log('Tanks: ' . print_r($fillHistory, true));
 ?>
 <div class="site-index">
 
     <div class="body-content">
 
+<!--    [ФОРМА ЗАЛИВКИ]    -->
         <h2>Заливка</h2>
         <?php $form = ActiveForm::begin() ?>
 
@@ -26,43 +33,31 @@ $this->title = 'TestTask';
             </div>
 
         <?php ActiveForm::end() ?>
+<!--    [ФОРМА ЗАЛИВКИ]    -->
 
         <hr/>
 
+<!--    [ОТОБРАЖАЕМ СТАТУС ЦИСТЕРН]    -->
         <h2>Цистерны</h2>
-
         <div class="tank-items">
-            <div class="tank-item">
-                <label class="h5" for="tank-1">Танк: 1</label>
-                <div id="tank-1" class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="300" aria-valuemin="0" aria-valuemax="300">100%</div>
+            <? foreach ($tanks as $tank) { ?>
+                <div class="tank-item">
+                    <label class="h5" for="tank-<?=$tank->id?>">Танк: <?=$tank->id?></label>
+                    <div id="tank-<?=$tank->id?>" class="progress">
+                        <div
+                                class="progress-bar"
+                                role="progressbar"
+                                style="width: <?= ($tank->fullness * 100) / $tank->quantity?>%;"
+                                aria-valuenow="<?=$tank->fullness?>"
+                                aria-valuemin="0"
+                                aria-valuemax="<?=$tank->quantity?>"
+                        ><?=$tank->fullness."/".$tank->quantity?></div>
+                    </div>
                 </div>
-            </div>
-            <div class="tank-item">
-                <label class="h5" for="tank-2">Танк: 2</label>
-                <div id="tank-2" class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="225" aria-valuemin="0" aria-valuemax="300">75%</div>
-                </div>
-            </div>
-            <div class="tank-item">
-                <label class="h5" for="tank-3">Танк: 3</label>
-                <div id="tank-3" class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="225" aria-valuemin="0" aria-valuemax="300">75%</div>
-                </div>
-            </div>
-            <div class="tank-item">
-                <label class="h5" for="tank-4">Танк: 4</label>
-                <div id="tank-4" class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="150" aria-valuemin="0" aria-valuemax="300">50%</div>
-                </div>
-            </div>
-            <div class="tank-item">
-                <label class="h5" for="tank-5">Танк: 5</label>
-                <div id="tank-5" class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 10%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="300">10%</div>
-                </div>
-            </div>
+            <? } ?>
         </div>
+<!--    [ОТОБРАЖАЕМ СТАТУС ЦИСТЕРН]    -->
+
 
         <hr/>
 

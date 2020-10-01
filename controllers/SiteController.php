@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\FillForm;
+use app\models\FillHistory;
+use app\models\Tank;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -57,6 +59,10 @@ class SiteController extends Controller
     {
         $model = new FillForm();
 
-        return $this->render('index', compact(['model']));
+        $tanks = Tank::getAll();
+
+        $fillHistory = FillHistory::getAll();
+
+        return $this->render('index', compact(['model', 'tanks', 'fillHistory']));
     }
 }

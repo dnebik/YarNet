@@ -43,4 +43,9 @@ class Tank extends \yii\db\ActiveRecord
             'quantity' => 'Quantity',
         ];
     }
+
+    public static function getAll()
+    {
+        return self::find()->orderBy('id ASC')->all();
+    }
 }

@@ -49,4 +49,9 @@ class FillHistory extends \yii\db\ActiveRecord
             'date' => 'Date',
         ];
     }
+
+    public static function getAll()
+    {
+        return self::find()->orderBy('date DESC')->all();
+    }
 }
