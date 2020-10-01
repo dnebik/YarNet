@@ -31,10 +31,6 @@ AppAsset::register($this);
         <a class="navbar-brand text-white-50" href="#">TestTask</a>
     </nav>
 
-    <div class="jumbotron">
-        <h1>YarNet</h1>
-    </div>
-
     <div class="content container">
         <?= $content ?>
     </div>
